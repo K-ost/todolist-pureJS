@@ -18,6 +18,7 @@ let currentPage = 1
 let startPage = 0
 let endPage = perPage
 let editValue = ''
+let alertMessage = 'The input field should not be empty or contain less than 3 characters.'
 
 
 // Data
@@ -105,7 +106,7 @@ function render() {
           </div>
           <div class="small text-secondary">${date}</div>
         </div>
-        <button class="btn btn-info ms-1" data-id="${el.id}" data-type="edit">&#9998;</button>
+        <button class="btn btn-info ms-1" data-id="${el.id}" data-title="${el.title}" data-type="edit" ${el.checked ? 'disabled' : ''}>&#9998;</button>
         <button class="btn btn-${el.checked ? 'warning' : 'success'} ms-1" data-id="${el.id}" data-type="checked">&check;</button>
         <button class="btn btn-danger ms-1" data-id="${el.id}" data-type="remove">&times;</button>
       `
@@ -119,7 +120,7 @@ render()
 submitForm?.addEventListener('submit', e => {
   e.preventDefault()
   if (value.length < 3) {
-    alert('The input field should not be empty or contain less than 3 characters.')
+    alert(alertMessage)
   } else {
     const newTodo = {
       id: Date.now(),
@@ -178,6 +179,8 @@ listItems.addEventListener('click', e => {
 
     // show edit field
     if (e.target.dataset.type === 'edit') {
+      let editInput = e.target.closest('.todo_item').children[0].children[1].children[0]
+      editInput.value = e.target.dataset.title
       document.querySelectorAll('.shown_name').forEach(el => el.style.display = 'block')
       document.querySelectorAll('.hidden_form').forEach(el => el.style.display = 'none')
       title.style.display = 'none'
@@ -186,20 +189,24 @@ listItems.addEventListener('click', e => {
 
     // Save
     if (e.target.dataset.type === 'save') {
-      items = items.map(el => {
-        if (el.id === Number(e.target.dataset.id)) {
-          if (!editValue.length) {
-            editValue = e.target.dataset.title
-          } else {
-            el.title = editValue
-            editValue = ''
+      if (editValue.length > 2) {
+        items = items.map(el => {
+          if (el.id === Number(e.target.dataset.id)) {
+            if (!editValue.length) {
+              editValue = e.target.dataset.title
+            } else {
+              el.title = editValue
+              editValue = ''
+            }
+            title.style.display = 'block'
+            form.style.display = 'none'
           }
-          title.style.display = 'block'
-          form.style.display = 'none'
-        }
-        return el
-      })
-      render()
+          return el
+        })
+        render()
+      } else {
+        alert(alertMessage)
+      }
     }
   }
 })
