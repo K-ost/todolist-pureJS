@@ -25,62 +25,37 @@ let alertMessage = 'The input field should not be empty or contain less than 3 c
 let items = [
   {
     id: 1691909351248,
-    title: "Test",
-    checked: false
+    title: "Wake up and got up",
+    checked: true
   },
   {
     id: 1691909354646,
-    title: "Studiyng english",
+    title: "Taking a shower",
     checked: true
   },
   {
     id: 1691909358358,
-    title: "Another Javascript task",
+    title: "Having a breakfast",
     checked: false
   },
   {
     id: 1691909358758,
-    title: "Work out",
+    title: "Drinking coffee",
     checked: false
   },
   {
     id: 1691909358858,
-    title: "English test",
+    title: "Going to work",
     checked: true
   },
   {
-    id: 1691909358958,
-    title: "Going for a walk",
+    id: 1691909358758,
+    title: "Gym time",
     checked: false
   },
   {
     id: 1691909358758,
-    title: "Work out",
-    checked: false
-  },
-  {
-    id: 1691909358858,
-    title: "English test",
-    checked: true
-  },
-  {
-    id: 1691909358958,
-    title: "Going for a walk",
-    checked: false
-  },
-  {
-    id: 1691909358758,
-    title: "Work out",
-    checked: false
-  },
-  {
-    id: 1691909358858,
-    title: "English test",
-    checked: false
-  },
-  {
-    id: 1691909358958,
-    title: "Going for a walk",
+    title: "Coming back home after all",
     checked: false
   }
 ]
