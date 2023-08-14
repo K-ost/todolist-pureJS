@@ -31,14 +31,60 @@ let items = [
   {
     id: 1691909354646,
     title: "Studiyng english",
-    checked: false
+    checked: true
   },
   {
     id: 1691909358358,
     title: "Another Javascript task",
     checked: false
+  },
+  {
+    id: 1691909358758,
+    title: "Work out",
+    checked: false
+  },
+  {
+    id: 1691909358858,
+    title: "English test",
+    checked: true
+  },
+  {
+    id: 1691909358958,
+    title: "Going for a walk",
+    checked: false
+  },
+  {
+    id: 1691909358758,
+    title: "Work out",
+    checked: false
+  },
+  {
+    id: 1691909358858,
+    title: "English test",
+    checked: true
+  },
+  {
+    id: 1691909358958,
+    title: "Going for a walk",
+    checked: false
+  },
+  {
+    id: 1691909358758,
+    title: "Work out",
+    checked: false
+  },
+  {
+    id: 1691909358858,
+    title: "English test",
+    checked: false
+  },
+  {
+    id: 1691909358958,
+    title: "Going for a walk",
+    checked: false
   }
 ]
+items.reverse()
 let itemsReserve = items
 
 
@@ -180,6 +226,7 @@ listItems.addEventListener('click', e => {
     // show edit field
     if (e.target.dataset.type === 'edit') {
       let editInput = e.target.closest('.todo_item').children[0].children[1].children[0]
+      editValue = e.target.dataset.title
       editInput.value = e.target.dataset.title
       document.querySelectorAll('.shown_name').forEach(el => el.style.display = 'block')
       document.querySelectorAll('.hidden_form').forEach(el => el.style.display = 'none')
@@ -270,13 +317,17 @@ paginationPages.addEventListener('click', e => {
   e.preventDefault()
   if (e.target.dataset.type) {
     if (e.target.dataset.type === 'page') {
-      startPage = (e.target.innerText - 1) * 5
+      startPage = (e.target.innerText - 1) * perPage
       endPage = startPage + perPage
       currentPage = Number(e.target.innerText)
     } else if (e.target.dataset.type === 'prev') {
-      console.log('prev')
+      startPage -= perPage 
+      endPage -= perPage
+      currentPage -=1
     } else if (e.target.dataset.type === 'next') {
-      console.log('next')
+      startPage += perPage 
+      endPage += perPage
+      currentPage +=1
     }
     render()
   }
